@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Firulapp: la plataforma integral que conecta tutores de mascotas con veterinarias, groomistas, paseadores y hoteles verificados con monitoreo en vivo e IA." />
+  <title>Firulapp — Todo el cuidado de tu mascota en un solo lugar</title>
+  <link rel="icon" type="image/png" href="assets/images/logo_app.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Barra superior de progreso de lectura -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Navbar Flotante Glassmorphism -->
+  <header class="navbar" id="navbar">
+    <a href="#inicio" class="nav-brand">
+      <img src="assets/images/logo_app.png" alt="Logo oficial Firulapp" />
+      <span>Firul<span class="brand-accent">app</span></span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#quienes-somos">Quiénes Somos</a></li>
+      <li><a href="#que-hacemos">Qué Hacemos</a></li>
+      <li><a href="#firulais">firulAIs</a></li>
+      <li><a href="#clinicas">Para Clínicas</a></li>
+      <li><a href="#planes">Planes</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#contacto" class="btn btn-teal">Únete a Firulapp</a>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- ======================================================================
+       HERO SECTION CON PARALLAX MULTI-CAPA
+       ====================================================================== -->
+  <section class="hero" id="inicio">
+    <div class="parallax-layer" aria-hidden="true">
+      <div class="float-shape shape-blob-1" data-parallax data-speed="0.24" data-rotate="18"></div>
+      <div class="float-shape shape-blob-2" data-parallax data-speed="-0.16" data-rotate="-14"></div>
+      <img src="assets/images/logo_dog_face.png" alt="" class="float-shape shape-dog-ghost" style="top: 18%; left: 6%;" data-parallax data-speed="0.28" data-rotate="-12" />
+      <img src="assets/images/logo_dog_face.png" alt="" class="float-shape shape-dog-ghost" style="bottom: 22%; right: 44%; width: 78px;" data-parallax data-speed="-0.22" data-rotate="16" />
+      <span class="float-shape shape-paw" style="top: 26%; right: 8%;" data-parallax data-speed="0.34" data-rotate="25">🐾</span>
+      <span class="float-shape shape-paw" style="bottom: 24%; left: 38%;" data-parallax data-speed="-0.18" data-rotate="-20">🐾</span>
+      <div class="float-shape shape-ring" style="top: 66%; right: 6%;" data-parallax data-speed="0.20"></div>
+    </div>
+
+    <div class="container hero-grid">
+      <div class="hero-content reveal">
+        <div class="hero-badge">
+          <span class="dot-live"></span>
+          Ecosistema B2B2C para Mascotas en Guatemala
+        </div>
+        <h1>
+          Cuidar a tu mejor amigo ahora es <span class="highlight">simple, cercano y en vivo.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Firulapp centraliza veterinarias, groomistas, paseadores y hoteles para mascotas en una sola app, con expediente clínico digital, seguimiento paso a paso, video en vivo y asistente con Inteligencia Artificial.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#que-hacemos" class="btn btn-teal">Explorar Ecosistema</a>
+          <a href="#clinicas" class="btn btn-glass">Soy Veterinaria / Proveedor</a>
+        </div>
+
+        <div class="store-badges">
+          <a href="#contacto" class="store-pill">
+            <img src="assets/images/google_icon.png" alt="Google Play" />
+            <div>
+              <span>Disponible pronto en</span>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+          <a href="#contacto" class="store-pill">
+            <img src="assets/images/apple_logo.svg" alt="App Store" />
+            <div>
+              <span>Disponible pronto en</span>
+              <strong>App Store</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="floating-badge top-left float-shape" data-parallax data-speed="-0.12">
+          <img src="assets/images/logo_app.png" alt="Video en vivo" />
+          <div>
+            <div>LiveKit WebRTC</div>
+            <small style="color: #00BFA6; font-weight: 600;">● En vivo &lt; 300ms</small>
+          </div>
+        </div>
+
+        <div class="phone-frame float-shape" data-parallax data-speed="0.08">
+          <div class="phone-screen">
+            <div class="phone-header">
+              <div class="phone-header-brand">
+                <img src="assets/images/logo_dog_face.png" alt="Firulapp" />
+                <span>Firulapp</span>
+              </div>
+              <span class="phone-live-pill">Tracking Activo</span>
+            </div>
+            <div class="phone-body">
+              <div class="phone-mascots-stage" id="mascotsStage" title="Haz clic para acariciar a Firulais y Michi">
+                <canvas id="welcomeMascotsCanvas" width="260" height="220"></canvas>
+                <span class="mascots-hint">Tócame o mueve el cursor ✨</span>
+              </div>
+              <div class="phone-mini-card">
+                <div class="phone-mini-icon purple">🩺</div>
+                <div>
+                  <h4>Cita &amp; Hotel Confirmados</h4>
+                  <span>Check-in hoy • Con traslado a domicilio</span>
+                </div>
+              </div>
+              <div class="phone-mini-card" style="margin-bottom: 0;">
+                <div class="phone-mini-icon teal">🤖</div>
+                <div>
+                  <h4>firulAIs Activo</h4>
+                  <span>Expediente clínico + Muñeco 3D listo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-badge bottom-right float-shape" data-parallax data-speed="0.14">
+          <img src="assets/images/petst.png" alt="Expediente" />
+          <div>
+            <div>Mi Billetera</div>
+            <small style="color: #7713B5; font-weight: 600;">Pago 1-Clic &amp; ACH 0%</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+        <path fill="#FFFFFF" d="M0,48 C280,100 580,0 920,42 C1160,72 1320,24 1440,38 L1440,90 L0,90 Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       FRANJA DE ESTADÍSTICAS
+       ====================================================================== -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <div class="stat-card">
+          <div class="stat-number" data-count="100" data-suffix="%">0%</div>
+          <div class="stat-label">Transparencia en cada etapa del servicio</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="300" data-prefix="&lt; " data-suffix=" ms">0 ms</div>
+          <div class="stat-label">Latencia en video streaming en vivo</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="24" data-suffix=" h">0 h</div>
+          <div class="stat-label">Liquidación bancaria al día hábil B2B</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="0" data-suffix="%">0%</div>
+          <div class="stat-label">Comisión en transferencias ACH locales</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       QUIÉNES SOMOS
+       ====================================================================== -->
+  <section id="quienes-somos">
+    <div class="parallax-layer" aria-hidden="true">
+      <div class="float-shape section-shape-blob" style="top: 10%; left: -80px;" data-parallax data-speed="0.18"></div>
+      <img src="assets/images/logo_dog_face.png" alt="" class="float-shape section-shape-dog" style="bottom: 12%; right: 4%;" data-parallax data-speed="-0.16" data-rotate="-15" />
+    </div>
+
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <div class="about-panel">
+            <img src="assets/images/petst.png" alt="Cuidado integral de mascotas en Firulapp" class="main-pet" />
+            <p class="about-quote">
+              “Nacimos para eliminar la incertidumbre al dejar a quienes más quieres en manos de terceros, conectando amor por las mascotas con tecnología confiable.”
+            </p>
+          </div>
+          <div class="about-badge-corner float-shape" data-parallax data-speed="-0.10">
+            <img src="assets/images/logo_app.png" alt="Emblema Firulapp" style="border-radius: 14px;" />
+          </div>
+        </div>
+
+        <div class="reveal">
+          <span class="section-tag">Quiénes Somos</span>
+          <h2>Un puente de confianza entre tutores y especialistas veterinarios</h2>
+          <p style="color: var(--muted-text); font-size: 1.05rem;">
+            En Guatemala y la región, encontrar veterinarias, groomistas, paseadores o pensiones verificadas suele depender de recomendaciones dispersas en redes sociales. <strong>Firulapp</strong> transforma esa experiencia en un ecosistema digital seguro, trazable y humano.
+          </p>
+
+          <div class="about-pillars">
+            <div class="pillar-item">
+              <div class="pillar-icon">🛡️</div>
+              <div>
+                <h3>Confianza Verificada</h3>
+                <p>Clínicas, hoteles y especialistas con perfiles públicos, certificaciones visibles y reseñas reales de otros tutores.</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-icon">📍</div>
+              <div>
+                <h3>Todo en una Sola App</h3>
+                <p>Agenda citas, reserva hospedaje, compra productos para pick-up en tienda y consulta el historial médico desde tu celular.</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-icon">🎥</div>
+              <div>
+                <h3>Cero Ansiedad por Separación</h3>
+                <p>Monitorea cada etapa en tiempo real y solicita transmisiones de video en vivo mientras atienden o cuidan a tu mascota.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       QUÉ HACEMOS (ECOSISTEMA PARA TUTORES)
+       ====================================================================== -->
+  <section id="que-hacemos" class="section-grey">
+    <div class="parallax-layer" aria-hidden="true">
+      <div class="float-shape section-shape-pink" style="top: 6%; right: -60px;" data-parallax data-speed="0.22" data-rotate="20"></div>
+      <div class="float-shape section-shape-blob" style="bottom: 4%; left: -70px;" data-parallax data-speed="-0.15"></div>
+      <span class="float-shape shape-paw" style="top: 48%; left: 3%; color: var(--primary-purple); opacity: 0.08;" data-parallax data-speed="0.26">🐾</span>
+    </div>
+
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag teal">Qué Hacemos</span>
+        <h2>Diseñado para el bienestar de tu mascota y tu tranquilidad</h2>
+        <p>Cada módulo de Firulapp resuelve una necesidad real del día a día, desde una consulta de rutina hasta unas vacaciones fuera de casa.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-purple">📅</div>
+          <h3>Reservas Unificadas: Citas &amp; Hotel</h3>
+          <p>Agenda consultas médicas, baños, paseos o estadías de hotel por noches con selector Check-in / Check-out y traslado a domicilio opcional.</p>
+          <div class="feature-pill-row">
+            <span class="mini-chip">Recogida GPS</span>
+            <span class="mini-chip">Sin Overbooking</span>
+          </div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-teal">📲</div>
+          <h3>Tracking Stepper en Tiempo Real</h3>
+          <p>Observa paso a paso en qué fase se encuentra tu mascota: recolección, baño o consulta, bitácora diaria en hotel y retorno seguro.</p>
+          <div class="feature-pill-row">
+            <span class="mini-chip">SignalR en Vivo</span>
+            <span class="mini-chip">Notas Clínicas</span>
+          </div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-magenta">📹</div>
+          <h3>Video Streaming en Vivo</h3>
+          <p>Solicita ver a tu mascota en tiempo real durante su grooming, consulta o estadía con tecnología WebRTC de ultra-baja latencia.</p>
+          <div class="feature-pill-row">
+            <span class="mini-chip">Premium 2/mes</span>
+            <span class="mini-chip">Pay-as-you-go $5</span>
+          </div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-purple">🗺️</div>
+          <h3>Mapa Interactivo &amp; Tienda Pick-up</h3>
+          <p>Encuentra sucursales cercanas, compara precios de alimento o farmacia en tiempo real y aparta o paga para recoger sin filas.</p>
+          <div class="feature-pill-row">
+            <span class="mini-chip">Click &amp; Collect</span>
+            <span class="mini-chip">Distancia Exacta</span>
+          </div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-teal">💳</div>
+          <h3>Mi Billetera Firulapp</h3>
+          <p>Guarda tus tarjetas una sola vez con tokenización PCI-Compliant vía Recurrente para pagar en 1 clic o usa transferencia ACH con 0% de comisión.</p>
+          <div class="feature-pill-row">
+            <span class="mini-chip">Recurrente GT</span>
+            <span class="mini-chip">ACH 0%</span>
+          </div>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-icon icon-gold">📋</div>
+          <h3>Expediente Clínico Digital</h3>
+          <p>Vacunas, alergias, tratamientos, procedimientos y razas centralizados en la nube para compartirlos al instante con cualquier médico.</p>
+          <div class="feature-pill-row">
+            <span class="mini-chip">Historial Completo</span>
+            <span class="mini-chip">Multi-Mascota</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECCIÓN DESTACADA: firulAIs & MUÑECO 3D
+       ====================================================================== -->
+  <section id="firulais" class="ai-showcase">
+    <div class="parallax-layer" aria-hidden="true">
+      <div class="float-shape shape-blob-1" style="opacity: 0.35; top: -120px; left: -90px;" data-parallax data-speed="0.22"></div>
+      <img src="assets/images/razas.png" alt="" class="float-shape" style="width: 110px; opacity: 0.08; bottom: 8%; right: 5%; border-radius: 20px;" data-parallax data-speed="-0.15" data-rotate="12" />
+    </div>
+
+    <div class="container ai-grid">
+      <div class="reveal">
+        <span class="section-tag">Inteligencia Artificial Contextual</span>
+        <h2>Conoce a <strong>firulAIs</strong> y el Escenario 3D de tu mascota</h2>
+        <p>
+          Más que un chatbot genérico: nuestro asistente impulsado por Google Gemini lee el expediente clínico real de tu mascota (alergias, peso, edad y tratamientos activos) para orientarte con precisión y ayudarte a agendar en segundos.
+        </p>
+        <ul class="ai-checklist">
+          <li><span class="check-badge">✓</span> Pre-consultas preventivas basadas en alergias y recetas activas.</li>
+          <li><span class="check-badge">✓</span> Agenda citas o actualiza perfiles conversando naturalmente.</li>
+          <li><span class="check-badge">✓</span> <strong>Muñeco 3D con IA</strong>: crea un avatar animado de cuerpo completo desde 1–3 fotos (1.ª generación gratis).</li>
+          <li><span class="check-badge">✓</span> <strong>Agente de Voz B2B</strong> para recepción automatizada en clínicas.</li>
+        </ul>
+        <a href="#planes" class="btn btn-teal">Ver Beneficios Premium</a>
+      </div>
+
+      <div class="ai-chat-card reveal">
+        <div class="ai-chat-top">
+          <div class="ai-avatar-row">
+            <img src="assets/images/logo_dog_face.png" alt="firulAIs" />
+            <div>
+              <strong style="display: block;">firulAIs Asistente</strong>
+              <small style="color: var(--accent-cyan);">Conectado al expediente de Max</small>
+            </div>
+          </div>
+          <span class="phone-live-pill">Gemini AI</span>
+        </div>
+
+        <div class="chat-bubble user">
+          Hola firulAIs, ¿puedo darle este antipulgas a Max hoy antes de su baño?
+        </div>
+        <div class="chat-bubble bot">
+          Revisé el expediente de Max (Golden Retriever, 28 kg): tiene <strong>alergia registrada a sulfas</strong>, pero su tratamiento actual no presenta conflicto. Te sugiero aplicarlo 48h después del baño para máxima efectividad. ¿Quieres que agende su grooming para el sábado?
+        </div>
+
+        <div class="pet-3d-stage">
+          <img src="assets/images/genres.png" alt="Escenario 3D de mascota" />
+          <div>
+            <strong style="display: block; font-size: 0.96rem;">Escenario Muñeco 3D de Max ✨</strong>
+            <small style="color: rgba(255,255,255,0.82);">Generado con IA preservando su rostro, pelaje y raza</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SECCIÓN B2B (PARA CLÍNICAS, VETERINARIAS Y HOTELES)
+       ====================================================================== -->
+  <section id="clinicas">
+    <div class="parallax-layer" aria-hidden="true">
+      <div class="float-shape section-shape-blob" style="top: 12%; right: -90px;" data-parallax data-speed="0.20"></div>
+      <img src="assets/images/logo_dog_face.png" alt="" class="float-shape section-shape-dog" style="bottom: 10%; left: 3%;" data-parallax data-speed="-0.14" data-rotate="14" />
+    </div>
+
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Firulapp para Empresas (B2B)</span>
+        <h2>Digitaliza tu clínica, hotel o estética con control total</h2>
+        <p>Sin comisiones ocultas sobre tus precios: recibe el 100% íntegro de tus servicios con herramientas profesionales para todo tu equipo.</p>
+      </div>
+
+      <div class="b2b-grid">
+        <div class="b2b-card reveal">
+          <div class="b2b-icon">🏢</div>
+          <div>
+            <h3>Gestión Multicentro y Roles</h3>
+            <p>Administra múltiples sucursales, capacidades simultáneas de grooming, clínica y hotel, y permisos dedicados para Dueño, Gerente, Médico, Groomista, Piloto y Contador.</p>
+          </div>
+        </div>
+
+        <div class="b2b-card reveal">
+          <div class="b2b-icon">🏦</div>
+          <div>
+            <h3>Cuenta Firulapp de Liquidación</h3>
+            <p>Activa tu cuenta con NIT/RTU y banco local en Guatemala. Tus cobros digitales se depositan automáticamente al siguiente día hábil con cifrado AES-256-GCM.</p>
+          </div>
+        </div>
+
+        <div class="b2b-card reveal">
+          <div class="b2b-icon">📊</div>
+          <div>
+            <h3>Dashboard en Vivo y Reportes Híbridos</h3>
+            <p>Visualiza ventas y citas en tiempo real vía SignalR y exporta reportes en Excel (.xlsx) o Informes Ejecutivos en PDF segmentados por sede.</p>
+          </div>
+        </div>
+
+        <div class="b2b-card reveal">
+          <div class="b2b-icon">💸</div>
+          <div>
+            <h3>Ingresos Extra con Streaming 70/30</h3>
+            <p>Activa LiveKit de forma opcional: gana $0.50 USD por live de suscriptores Premium y el 30% ($1.50 USD) de cada transmisión Pay-as-you-go.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       PLANES Y MODELO TRANSPARENTE
+       ====================================================================== -->
+  <section id="planes" class="section-grey">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag teal">Modelo Transparente</span>
+        <h2>Planes pensados para crecer juntos</h2>
+        <p>Elige si quieres ver los beneficios para tu mascota o para tu negocio veterinario.</p>
+      </div>
+
+      <div class="plan-switch-wrap reveal">
+        <div class="plan-switch" role="tablist" aria-label="Selector de planes">
+          <button class="plan-tab active" data-plan-target="b2c" role="tab" aria-selected="true">Para Tutores (B2C)</button>
+          <button class="plan-tab" data-plan-target="b2b" role="tab" aria-selected="false">Para Clínicas (B2B)</button>
+        </div>
+      </div>
+
+      <!-- Grid B2C -->
+      <div class="pricing-grid reveal" id="plans-b2c">
+        <div class="pricing-card">
+          <h3>Freemium</h3>
+          <div class="pricing-price">$0 <span>/ siempre</span></div>
+          <p class="pricing-desc">Todo lo esencial para gestionar la salud y citas de tus mascotas.</p>
+          <ul class="pricing-list">
+            <li>Perfiles y expediente clínico digital</li>
+            <li>Agendamiento de citas, hotel y pick-up</li>
+            <li>Tracking paso a paso en tiempo real</li>
+            <li>1 generación gratis de Muñeco 3D con IA</li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline-purple">Comenzar Gratis</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <span class="pricing-badge">Más Popular</span>
+          <h3>Firulapp Premium</h3>
+          <div class="pricing-price">$10 <span>USD / mes</span></div>
+          <p class="pricing-desc">Tranquilidad total con video en vivo, IA ilimitada y avatares 3D.</p>
+          <ul class="pricing-list">
+            <li>2 transmisiones en vivo al mes (LiveKit)</li>
+            <li>2 generaciones de Muñeco 3D al mes</li>
+            <li>Consultas ilimitadas con firulAIs</li>
+            <li>Acceso prioritario a funciones exclusivas</li>
+          </ul>
+          <a href="#contacto" class="btn btn-teal">Quiero ser Premium</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Pago por Evento</h3>
+          <div class="pricing-price">$3–$5 <span>USD / uso</span></div>
+          <p class="pricing-desc">Sin compromisos mensuales, úsalo solo cuando lo necesites.</p>
+          <ul class="pricing-list">
+            <li>Live Streaming Pay-as-you-go: $5.00 USD</li>
+            <li>Pack Extra de 2 Muñecos 3D: $3.00 USD</li>
+            <li>Pago en 1 clic desde Mi Billetera</li>
+            <li>Transferencia ACH local con 0% comisión</li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline-purple">Conocer Billetera</a>
+        </div>
+      </div>
+
+      <!-- Grid B2B -->
+      <div class="pricing-grid hidden reveal" id="plans-b2b">
+        <div class="pricing-card">
+          <h3>Plan Inicial</h3>
+          <div class="pricing-price">$0 <span>/ inicio</span></div>
+          <p class="pricing-desc">Ideal para consultorios independientes o paseadores.</p>
+          <ul class="pricing-list">
+            <li>Gestión de agenda y citas en tiempo real</li>
+            <li>Hasta 2 colaboradores por sede</li>
+            <li>Perfil público geolocalizado y reseñas</li>
+            <li>Liquidación bancaria al día siguiente</li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline-purple">Registrar Negocio</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <span class="pricing-badge">Recomendado B2B</span>
+          <h3>Plan Pro Sucursal</h3>
+          <div class="pricing-price">$29–$49 <span>USD / mes</span></div>
+          <p class="pricing-desc">Potencia tu clínica con IA, streaming y reportes ejecutivos.</p>
+          <ul class="pricing-list">
+            <li>Citas, hotel y especialistas ilimitados</li>
+            <li>Streaming LiveKit con incentivo 70/30</li>
+            <li>Agente IA de Negocios y Voz por sede</li>
+            <li>Reportes Excel (.xlsx) + PDF Ejecutivos</li>
+          </ul>
+          <a href="#contacto" class="btn btn-teal">Solicitar Demo B2B</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>100% de tu Precio</h3>
+          <div class="pricing-price">0% <span>retención oculta</span></div>
+          <p class="pricing-desc">Tu clínica recibe el valor íntegro de sus servicios y productos.</p>
+          <ul class="pricing-list">
+            <li>Enrutamiento directo vía Recurrente</li>
+            <li>Cuentas bancarias asignables por sede</li>
+            <li>Catálogo global visible en Tienda Pick-up</li>
+            <li>Seguridad bancaria AES-256-GCM + 2FA</li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline-purple">Activar Liquidación</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CTA FINAL Y CONTACTO
+       ====================================================================== -->
+  <section id="contacto">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <div>
+          <h2>¿Listo para transformar el cuidado de tu mascota o hacer crecer tu clínica?</h2>
+          <p>
+            Déjanos tus datos para recibir acceso anticipado a la app móvil o agendar el onboarding de tu veterinaria en Firulapp.
+          </p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <input type="text" id="contactName" placeholder="Tu nombre o nombre de tu clínica" required />
+          <input type="email" id="contactEmail" placeholder="Correo electrónico" required />
+          <select id="contactType">
+            <option value="tutor">Soy tutor de mascota (App Móvil)</option>
+            <option value="clinica">Soy veterinaria / groomista / hotel (B2B)</option>
+          </select>
+          <button type="submit" class="btn btn-teal">Solicitar Acceso</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#inicio" class="nav-brand" style="color: #FFFFFF; margin-bottom: 14px;">
+            <img src="assets/images/logo_app.png" alt="Firulapp" />
+            <span>Firulapp</span>
+          </a>
+          <p style="font-size: 0.92rem; max-width: 320px;">
+            Ecosistema integral para el bienestar animal: reservas de citas y hotel, tienda pick-up, billetera digital, video en vivo e Inteligencia Artificial.
+          </p>
+        </div>
+
+        <div>
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="#quienes-somos">Quiénes Somos</a></li>
+            <li><a href="#que-hacemos">Para Tutores</a></li>
+            <li><a href="#clinicas">Para Clínicas</a></li>
+            <li><a href="#firulais">firulAIs &amp; 3D</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Ecosistema</h4>
+          <ul>
+            <li><a href="#planes">Planes y Precios</a></li>
+            <li><a href="#que-hacemos">Mi Billetera (Recurrente)</a></li>
+            <li><a href="#que-hacemos">Streaming LiveKit</a></li>
+            <li><a href="#clinicas">Cuenta de Liquidación</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li>Guatemala, Centroamérica</li>
+            <li><a href="mailto:hola@firulapp.com">hola@firulapp.com</a></li>
+            <li><a href="#contacto">Formulario de Acceso</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Firulapp — UnknownTechnologies. Todos los derechos reservados.</span>
+        <span>Hecho con 💜 para las mascotas</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast reutilizable -->
+  <div class="firulapp-toast" id="firulappToast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
